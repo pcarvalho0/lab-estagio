@@ -1,0 +1,141 @@
+<div class="mem-analytics">
+  <div class="mem-header">
+    <div>
+      <span class="mem-eyebrow">MONITORAMENTO DE SISTEMA</span>
+      <h2>Análise de Memória</h2>
+      <p>Consumo e disponibilidade de memória RAM</p>
+    </div>
+    <div class="mem-status" id="memStatus">
+      <span class="mem-status-dot"></span>
+      <span id="memStatusText">Aguardando dados</span>
+    </div>
+  </div>
+
+  <div class="mem-main">
+    <section class="mem-panel mem-gauge-panel">
+      <div class="mem-panel-title">Utilização da memória</div>
+      <div class="mem-gauge">
+        <svg viewBox="0 0 220 140">
+          <defs>
+            <linearGradient id="memGradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#29b6f6"/>
+              <stop offset="100%" stop-color="#7c4dff"/>
+            </linearGradient>
+          </defs>
+          <path d="M 30 115 A 80 80 0 0 1 190 115"
+                fill="none" stroke="#26364d" stroke-width="15"
+                stroke-linecap="round"/>
+          <path id="memGaugeArc"
+                d="M 30 115 A 80 80 0 0 1 190 115"
+                fill="none" stroke="url(#memGradient)" stroke-width="15"
+                stroke-linecap="round" pathLength="100"
+                stroke-dasharray="100" stroke-dashoffset="100"/>
+        </svg>
+        <div class="mem-gauge-value">
+          <strong id="memUsage">--%</strong>
+          <span>EM USO</span>
+        </div>
+      </div>
+      <div class="mem-gauge-footer">
+        <span>0%</span>
+        <span>50%</span>
+        <span>100%</span>
+      </div>
+    </section>
+
+    <section class="mem-panel mem-capacity-panel">
+      <div class="mem-panel-title">Capacidade de memória</div>
+
+      <div class="mem-stat">
+        <div class="mem-stat-icon mem-icon-blue">RAM</div>
+        <div class="mem-stat-info">
+          <span>Memória total</span>
+          <strong id="memTotal">--</strong>
+        </div>
+      </div>
+
+      <div class="mem-stat">
+        <div class="mem-stat-icon mem-icon-cyan">LIVRE</div>
+        <div class="mem-stat-info">
+          <span>Memória disponível</span>
+          <strong id="memAvailable">--</strong>
+        </div>
+      </div>
+
+      <div class="mem-stat">
+        <div class="mem-stat-icon mem-icon-purple">USO</div>
+        <div class="mem-stat-info">
+          <span>Memória utilizada</span>
+          <strong id="memUsed">--</strong>
+        </div>
+      </div>
+
+      <div class="mem-capacity-bar">
+        <div id="memCapacityUsed"></div>
+      </div>
+
+      <div class="mem-capacity-legend">
+        <span>Utilizada</span>
+        <strong id="memCapacityPercent">--%</strong>
+      </div>
+    </section>
+  </div>
+
+  <!-- ALERTA ZABBIX -->
+  <section class="mem-panel mem-alert-panel">
+    <div class="mem-alert-header">
+      <div>
+        <div class="mem-panel-title">Alertas de memória</div>
+        <p>Monitoramento de problemas ativos no Zabbix</p>
+      </div>
+      <span id="memAlertBadge" class="mem-alert-badge mem-alert-normal">
+        NORMAL
+      </span>
+    </div>
+
+    <div class="mem-alert-content">
+      <div class="mem-alert-icon" id="memAlertIcon">✓</div>
+
+      <div class="mem-alert-info">
+        <strong id="memAlertTitle">Nenhum alerta ativo</strong>
+        <span id="memAlertDescription">
+          A trigger High memory utilization não está reportando problemas.
+        </span>
+        <small id="memAlertTime">Verificando dados do Zabbix...</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="mem-panel mem-history-panel">
+    <div class="mem-history-header">
+      <div>
+        <div class="mem-panel-title">Histórico de utilização</div>
+        <p>Evolução percentual do consumo de RAM</p>
+      </div>
+      <span class="mem-history-badge">TEMPO REAL</span>
+    </div>
+
+    <div class="mem-chart">
+      <svg id="memHistoryChart" viewBox="0 0 600 180"
+           preserveAspectRatio="none">
+        <line x1="35" y1="20" x2="590" y2="20" class="mem-grid"/>
+        <line x1="35" y1="85" x2="590" y2="85" class="mem-grid"/>
+        <line x1="35" y1="150" x2="590" y2="150" class="mem-grid"/>
+        <text x="0" y="24" class="mem-axis">100%</text>
+        <text x="7" y="89" class="mem-axis">50%</text>
+        <text x="17" y="154" class="mem-axis">0%</text>
+        <path id="memHistoryArea" d="" class="mem-area"/>
+        <path id="memHistoryLine" d="" class="mem-line"/>
+      </svg>
+
+      <div id="memChartEmpty" class="mem-chart-empty">
+        Aguardando histórico de dados...
+      </div>
+    </div>
+  </section>
+
+  <div class="mem-footer">
+    <span><i></i> Dados recebidos do Zabbix</span>
+    <span id="memUpdated">Aguardando atualização</span>
+  </div>
+</div>

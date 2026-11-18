@@ -1,0 +1,167 @@
+<div class="cpu-analytics" id="cpuAnalytics">
+
+  <header class="cpu-header">
+    <div>
+      <div class="cpu-eyebrow">INFRAESTRUTURA / PROCESSADOR</div>
+      <h2>ANÁLISE DE CPU</h2>
+      <p>VMware-Virtual-Platform · Monitoramento em tempo real</p>
+    </div>
+    <div class="cpu-live">
+      <span class="cpu-live-dot"></span>
+      <span id="cpuLiveStatus">MONITORANDO</span>
+    </div>
+  </header>
+
+  <section class="cpu-overview">
+
+    <div class="cpu-panel cpu-gauge-panel">
+      <div class="cpu-panel-heading">
+        <div>
+          <span class="cpu-section-label">CARGA DO PROCESSADOR</span>
+          <h3>Utilização da CPU</h3>
+        </div>
+        <span class="cpu-chip">CONSULTA A</span>
+      </div>
+
+      <div class="cpu-gauge-wrap">
+        <svg class="cpu-gauge" viewBox="0 0 220 140">
+          <defs>
+            <linearGradient id="cpuGaugeGradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#42c9ff"/>
+              <stop offset="100%" stop-color="#8298ff"/>
+            </linearGradient>
+          </defs>
+
+          <path class="cpu-gauge-track" d="M 25 115 A 85 85 0 0 1 195 115"/>
+          <path id="cpuGaugeArc" class="cpu-gauge-arc" d="M 25 115 A 85 85 0 0 1 195 115"/>
+
+          <text x="25" y="134" class="cpu-gauge-scale">0%</text>
+          <text x="195" y="134" text-anchor="end" class="cpu-gauge-scale">100%</text>
+        </svg>
+
+        <div class="cpu-gauge-value">
+          <strong id="cpuUtilValue">--%</strong>
+          <span>CPU EM USO</span>
+        </div>
+      </div>
+
+      <div class="cpu-gauge-footer">
+        <span>
+          <i class="cpu-status-dot" id="cpuHealthDot"></i>
+          <span id="cpuHealthText">Aguardando dados</span>
+        </span>
+        <span id="cpuUpdated">Aguardando telemetria</span>
+      </div>
+    </div>
+
+    <div class="cpu-side-metrics">
+
+      <div class="cpu-panel cpu-stat-panel">
+        <div class="cpu-stat-top">
+          <span class="cpu-stat-icon">◈</span>
+          <span class="cpu-chip">CONSULTA B</span>
+        </div>
+        <span class="cpu-section-label">TEMPO DE USUÁRIO</span>
+        <strong id="cpuUserValue">--</strong>
+        <div class="cpu-stat-caption">Tempo de CPU em processos de usuário</div>
+        <div class="cpu-mini-track"><span id="cpuUserBar"></span></div>
+      </div>
+
+      <div class="cpu-panel cpu-stat-panel">
+        <div class="cpu-stat-top">
+          <span class="cpu-stat-icon">⌘</span>
+          <span class="cpu-chip">CONSULTA C</span>
+        </div>
+        <span class="cpu-section-label">TEMPO DE SISTEMA</span>
+        <strong id="cpuSystemValue">--</strong>
+        <div class="cpu-stat-caption">Tempo de CPU em processos do sistema</div>
+        <div class="cpu-mini-track"><span id="cpuSystemBar"></span></div>
+      </div>
+
+      <div class="cpu-panel cpu-load-panel">
+        <div class="cpu-stat-top">
+          <span class="cpu-stat-icon">⌁</span>
+          <span class="cpu-chip">CONSULTA D</span>
+        </div>
+        <span class="cpu-section-label">CARGA DO SISTEMA</span>
+        <strong id="cpuLoadValue">--</strong>
+        <div class="cpu-stat-caption">Carga média do último minuto</div>
+        <div class="cpu-load-indicator">
+          <span id="cpuLoadDot"></span>
+          <span id="cpuLoadStatus">Aguardando dados</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NOVO: ALERTA DA TRIGGER DE CPU -->
+  <section class="cpu-panel cpu-alert-panel">
+    <div class="cpu-alert-header">
+      <div>
+        <span class="cpu-section-label">GERENCIAMENTO DE EVENTOS</span>
+        <h3>Alertas de CPU</h3>
+        <p>Eventos ativos recebidos do Zabbix</p>
+      </div>
+      <span class="cpu-chip">CONSULTA E · ZABBIX PROBLEMS</span>
+    </div>
+
+    <div id="cpuAlertContainer" class="cpu-alert-container">
+      <div class="cpu-alert-empty">
+        <span class="cpu-alert-icon">✓</span>
+        <div>
+          <strong>CPU normal</strong>
+          <p>Nenhum alerta ativo de utilização da CPU.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cpu-panel cpu-history-panel">
+    <div class="cpu-history-header">
+      <div>
+        <span class="cpu-section-label">TELEMETRIA DE DESEMPENHO</span>
+        <h3>Histórico de desempenho da CPU</h3>
+        <p>Evolução das métricas recebidas do Zabbix</p>
+      </div>
+      <span class="cpu-chip">CONSULTAS A / B / C</span>
+    </div>
+
+    <div class="cpu-chart-legend">
+      <span><i class="legend-cpu"></i>Utilização da CPU</span>
+      <span><i class="legend-user"></i>Tempo de usuário</span>
+      <span><i class="legend-system"></i>Tempo de sistema</span>
+    </div>
+
+    <div class="cpu-chart-wrap">
+      <svg id="cpuHistoryChart" viewBox="0 0 900 250" preserveAspectRatio="none">
+        <g class="cpu-grid-lines">
+          <line x1="0" y1="25" x2="900" y2="25"/>
+          <line x1="0" y1="75" x2="900" y2="75"/>
+          <line x1="0" y1="125" x2="900" y2="125"/>
+          <line x1="0" y1="175" x2="900" y2="175"/>
+          <line x1="0" y1="225" x2="900" y2="225"/>
+        </g>
+
+        <polyline id="cpuHistoryA" class="cpu-chart-line line-cpu" points=""/>
+        <polyline id="cpuHistoryB" class="cpu-chart-line line-user" points=""/>
+        <polyline id="cpuHistoryC" class="cpu-chart-line line-system" points=""/>
+      </svg>
+
+      <div id="cpuChartEmpty" class="cpu-chart-empty">
+        Aguardando dados históricos...
+      </div>
+    </div>
+
+    <div class="cpu-history-footer">
+      <span id="cpuHistoryCount">0 amostras históricas</span>
+      <span>Intervalo definido pelo dashboard</span>
+    </div>
+  </section>
+
+  <footer class="cpu-footer">
+    <span><i></i>FONTE DE DADOS: ZABBIX</span>
+    <span id="cpuDataStatus">INICIALIZANDO</span>
+  </footer>
+
+</div>

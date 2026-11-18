@@ -1,0 +1,150 @@
+<div class="disk-analytics">
+  <header class="disk-header">
+    <div>
+      <span class="disk-eyebrow">MONITORAMENTO DE INFRAESTRUTURA</span>
+      <h2>Análise de Disco</h2>
+      <p>Armazenamento e desempenho do dispositivo sda</p>
+    </div>
+    <div class="disk-status" id="diskStatus">
+      <span class="disk-status-dot"></span>
+      <span id="diskStatusText">Aguardando dados</span>
+    </div>
+  </header>
+
+  <div class="disk-main">
+    <section class="disk-panel disk-activity">
+      <div class="disk-panel-title">Atividade do disco</div>
+      <div class="disk-gauge">
+        <svg viewBox="0 0 220 140">
+          <defs>
+            <linearGradient id="diskGradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#22d3ee"/>
+              <stop offset="100%" stop-color="#8b5cf6"/>
+            </linearGradient>
+          </defs>
+          <path d="M30 115 A80 80 0 0 1 190 115"
+                fill="none" stroke="#26364d" stroke-width="15"
+                stroke-linecap="round"/>
+          <path id="diskGaugeArc"
+                d="M30 115 A80 80 0 0 1 190 115"
+                fill="none" stroke="url(#diskGradient)"
+                stroke-width="15" stroke-linecap="round"
+                pathLength="100" stroke-dasharray="100"
+                stroke-dashoffset="100"/>
+        </svg>
+        <div class="disk-gauge-value">
+          <strong id="diskActivityValue">--%</strong>
+          <span>EM ATIVIDADE</span>
+        </div>
+      </div>
+      <div class="disk-gauge-scale">
+        <span>0%</span><span>50%</span><span>100%</span>
+      </div>
+      <div class="disk-activity-note">
+        Percentual de utilização operacional do disco
+      </div>
+    </section>
+
+    <section class="disk-panel disk-storage">
+      <div class="disk-panel-title">Capacidade de armazenamento</div>
+
+      <div class="disk-storage-stat">
+        <div class="disk-icon disk-icon-blue">TOTAL</div>
+        <div class="disk-stat-info">
+          <span>Capacidade total</span>
+          <strong id="diskTotal">--</strong>
+        </div>
+      </div>
+
+      <div class="disk-storage-stat">
+        <div class="disk-icon disk-icon-purple">USADO</div>
+        <div class="disk-stat-info">
+          <span>Espaço ocupado</span>
+          <strong id="diskUsed">--</strong>
+        </div>
+      </div>
+
+      <div class="disk-storage-stat">
+        <div class="disk-icon disk-icon-cyan">LIVRE</div>
+        <div class="disk-stat-info">
+          <span>Espaço disponível</span>
+          <strong id="diskAvailable">--</strong>
+        </div>
+      </div>
+
+      <div class="disk-capacity-track">
+        <div id="diskCapacityBar"></div>
+      </div>
+      <div class="disk-capacity-footer">
+        <span>Armazenamento ocupado</span>
+        <strong id="diskCapacityPercent">--%</strong>
+      </div>
+    </section>
+  </div>
+
+  <!-- ALERTAS ZABBIX -->
+  <section class="disk-panel disk-alert-panel">
+    <div class="disk-alert-header">
+      <div>
+        <div class="disk-panel-title">Alertas de disco</div>
+        <p>Monitoramento de problemas ativos no Zabbix</p>
+      </div>
+      <span id="diskAlertBadge" class="disk-alert-badge disk-alert-normal">
+        NORMAL
+      </span>
+    </div>
+
+    <div class="disk-alert-content">
+      <div class="disk-alert-icon" id="diskAlertIcon">✓</div>
+
+      <div class="disk-alert-info">
+        <strong id="diskAlertTitle">Nenhum alerta ativo</strong>
+        <span id="diskAlertDescription">
+          A trigger Space is critically low não está reportando problemas.
+        </span>
+        <small id="diskAlertTime">Verificando dados do Zabbix...</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="disk-panel disk-history">
+    <div class="disk-history-header">
+      <div>
+        <div class="disk-panel-title">Leitura e escrita do disco</div>
+        <p>Taxa de transferência ao longo do tempo</p>
+      </div>
+      <span class="disk-live-label">DISK I/O</span>
+    </div>
+
+    <div class="disk-io-legend">
+      <span><i class="disk-read-dot"></i> Leitura</span>
+      <strong id="diskReadCurrent">--</strong>
+      <span><i class="disk-write-dot"></i> Escrita</span>
+      <strong id="diskWriteCurrent">--</strong>
+    </div>
+
+    <div class="disk-chart">
+      <svg id="diskHistoryChart" viewBox="0 0 600 180"
+           preserveAspectRatio="none">
+        <line x1="48" y1="20" x2="590" y2="20" class="disk-grid"/>
+        <line x1="48" y1="85" x2="590" y2="85" class="disk-grid"/>
+        <line x1="48" y1="150" x2="590" y2="150" class="disk-grid"/>
+        <text id="diskAxisTop" x="2" y="24" class="disk-axis">--</text>
+        <text id="diskAxisMid" x="2" y="89" class="disk-axis">--</text>
+        <text x="15" y="154" class="disk-axis">0</text>
+        <path id="diskReadArea" class="disk-read-area" d=""/>
+        <path id="diskWriteArea" class="disk-write-area" d=""/>
+        <path id="diskReadLine" class="disk-read-line" d=""/>
+        <path id="diskWriteLine" class="disk-write-line" d=""/>
+      </svg>
+      <div id="diskChartEmpty" class="disk-chart-empty">
+        Aguardando histórico de leitura e escrita...
+      </div>
+    </div>
+  </section>
+
+  <footer class="disk-footer">
+    <span><i></i> Dados recebidos do Zabbix</span>
+    <span id="diskUpdated">Aguardando atualização</span>
+  </footer>
+</div>

@@ -1,0 +1,295 @@
+
+.cpu-trace {
+  --bg: #071426;
+  --card: #0e233b;
+  --border: #21415e;
+  --cyan: #42c9ff;
+  --text: #f2f7ff;
+  --muted: #83b5e5;
+  --green: #48e0c4;
+  --yellow: #ffca65;
+  --red: #ff7185;
+
+  width: 100%;
+  min-height: 380px;
+  padding: 26px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Arial, sans-serif;
+}
+
+.cpu-trace * {
+  box-sizing: border-box;
+}
+
+/* CABEÇALHO */
+
+.trace-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 85px;
+}
+
+.trace-eyebrow {
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.trace-header h2 {
+  margin: 9px 0;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.trace-header p {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0;
+}
+
+.trace-overall {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* FLUXO LINEAR */
+
+.trace-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 5px 30px;
+  gap: 0;
+}
+
+/* CARDS */
+
+.trace-node {
+  flex: 1 0 165px;
+  min-width: 165px;
+  min-height: 195px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  padding: 20px 10px;
+  border-radius: 15px;
+  background: var(--card);
+  border: 1px solid var(--border);
+
+  text-align: center;
+  cursor: pointer;
+
+  transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+.trace-node:hover {
+  transform: translateY(-5px);
+}
+
+.node-number {
+  position: absolute;
+  top: 12px;
+  left: 13px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.node-icon {
+  font-size: 34px;
+  color: var(--cyan);
+  margin-bottom: 15px;
+  line-height: 1;
+}
+
+.trace-node h3 {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 800;
+  margin: 0 0 9px;
+  white-space: nowrap;
+}
+
+.trace-node p {
+  color: var(--muted);
+  font-size: 10px;
+  margin: 0 0 20px;
+  white-space: nowrap;
+}
+
+.node-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+/* INDICADORES */
+
+.trace-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #7892aa;
+}
+
+.trace-node.normal {
+  border: 1px solid var(--green);
+  box-shadow:
+    0 0 7px #48e0c455,
+    0 0 22px #48e0c422,
+    inset 0 0 12px #48e0c411;
+}
+
+.trace-node.normal .trace-dot,
+.trace-dot.normal {
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+}
+
+.trace-node.warning {
+  border: 1px solid var(--yellow);
+  box-shadow:
+    0 0 8px #ffca6555,
+    0 0 22px #ffca6522;
+}
+
+.trace-node.warning .trace-dot,
+.trace-dot.warning {
+  background: var(--yellow);
+  box-shadow: 0 0 12px var(--yellow);
+}
+
+.trace-node.critical {
+  border: 1px solid var(--red);
+  box-shadow:
+    0 0 8px #ff718566,
+    0 0 24px #ff718533,
+    inset 0 0 14px #ff718511;
+}
+
+.trace-node.critical .trace-dot,
+.trace-dot.critical {
+  background: var(--red);
+  box-shadow: 0 0 12px var(--red);
+}
+
+.trace-node.unknown .trace-dot,
+.trace-dot.unknown {
+  background: #7892aa;
+  box-shadow: none;
+}
+
+.trace-node.selected {
+  outline: 2px solid var(--cyan);
+  outline-offset: 5px;
+}
+
+/* CONEXÕES */
+
+.trace-link {
+  flex: 0 0 30px;
+  height: 2px;
+  position: relative;
+  background: var(--border);
+}
+
+.trace-link::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -4px;
+  border-left: 7px solid var(--cyan);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.trace-link span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 9px;
+  height: 2px;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  animation: dataFlow 2s linear infinite;
+}
+
+@keyframes dataFlow {
+  from { left: 0; }
+  to { left: calc(100% - 9px); }
+}
+
+/* RODAPÉ */
+
+.trace-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 40px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1200px) {
+  .trace-flow {
+    justify-content: flex-start;
+  }
+
+  .trace-header {
+    margin-bottom: 45px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cpu-trace {
+    padding: 16px;
+  }
+
+  .trace-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .trace-footer {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace-link span {
+    animation: none;
+  }
+
+  .trace-node {
+    transition: none;
+  }
+}

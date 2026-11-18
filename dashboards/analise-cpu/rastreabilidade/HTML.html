@@ -1,0 +1,115 @@
+
+<div class="cpu-trace">
+
+  <header class="trace-header">
+    <div>
+      <span class="trace-eyebrow">NOC / INFRASTRUCTURE MONITORING</span>
+      <h2>RASTREABILIDADE DE CPU</h2>
+      <p>VMware-Virtual-Plataform · Monitoramento de infraestrutura</p>
+    </div>
+
+    <div class="trace-overall">
+      <span id="overallDot" class="trace-dot unknown"></span>
+      <span id="overallStatus">AGUARDANDO VERIFICAÇÃO</span>
+    </div>
+  </header>
+
+  <main class="trace-flow">
+
+    <div class="trace-node unknown" data-stage="vm">
+      <span class="node-number">01</span>
+      <div class="node-icon">▣</div>
+      <h3>Máquina Virtual</h3>
+      <p>Origem dos dados</p>
+      <div class="node-status">
+        <span class="trace-dot"></span>
+        <span class="status-label">SEM DADOS</span>
+      </div>
+    </div>
+
+    <div class="trace-link"><span></span></div>
+
+    <div class="trace-node unknown" data-stage="agent">
+      <span class="node-number">02</span>
+      <div class="node-icon">◉</div>
+      <h3>Zabbix Agent</h3>
+      <p>Coleta da CPU</p>
+      <div class="node-status">
+        <span class="trace-dot"></span>
+        <span class="status-label">SEM DADOS</span>
+      </div>
+    </div>
+
+    <div class="trace-link"><span></span></div>
+
+    <div class="trace-node unknown" data-stage="network">
+      <span class="node-number">03</span>
+      <div class="node-icon">⌁</div>
+      <h3>Rede</h3>
+      <p>Comunicação</p>
+      <div class="node-status">
+        <span class="trace-dot"></span>
+        <span class="status-label">SEM DADOS</span>
+      </div>
+    </div>
+
+    <div class="trace-link"><span></span></div>
+
+    <div class="trace-node unknown" data-stage="server">
+      <span class="node-number">04</span>
+      <div class="node-icon">▤</div>
+      <h3>Zabbix Server</h3>
+      <p>Processamento</p>
+      <div class="node-status">
+        <span class="trace-dot"></span>
+        <span class="status-label">SEM DADOS</span>
+      </div>
+    </div>
+
+    <div class="trace-link"><span></span></div>
+
+    <div class="trace-node unknown" data-stage="database">
+      <span class="node-number">05</span>
+      <div class="node-icon">▥</div>
+      <h3>MySQL</h3>
+      <p>Armazenamento</p>
+      <div class="node-status">
+        <span class="trace-dot"></span>
+        <span class="status-label">SEM DADOS</span>
+      </div>
+    </div>
+
+    <div class="trace-link"><span></span></div>
+
+    <div class="trace-node unknown" data-stage="api">
+      <span class="node-number">06</span>
+      <div class="node-icon">⇄</div>
+      <h3>Zabbix API</h3>
+      <p>Integração Grafana</p>
+      <div class="node-status">
+        <span class="trace-dot"></span>
+        <span class="status-label">SEM DADOS</span>
+      </div>
+    </div>
+
+    <div class="trace-link"><span></span></div>
+
+    <div class="trace-node unknown" data-stage="grafana">
+      <span class="node-number">07</span>
+      <div class="node-icon">◈</div>
+      <h3>Grafana</h3>
+      <p>Visualização final</p>
+      <div class="node-status">
+        <span class="trace-dot"></span>
+        <span class="status-label">SEM DADOS</span>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="trace-footer">
+    <span>CPU MONITORING TRACE</span>
+    <span>VMWARE → ZABBIX → MYSQL → GRAFANA</span>
+  </footer>
+
+</div>

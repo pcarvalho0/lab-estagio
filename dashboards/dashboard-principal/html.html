@@ -1,0 +1,200 @@
+
+<div class="monitor-dashboard">
+  <div class="monitor-header">
+    <div>
+      <div class="eyebrow">INFRASTRUCTURE / MONITORING</div>
+      <h2>SYSTEM MONITORING</h2>
+      <div class="subtitle">VMware-Virtual-Platform</div>
+    </div>
+
+    <div class="system-status">
+      <span id="systemDot" class="status-dot"></span>
+      <span id="systemStatus">CHECKING</span>
+      <small id="lastUpdate">Aguardando dados...</small>
+    </div>
+  </div>
+
+  <!-- MÉTRICAS PRINCIPAIS -->
+  <div class="monitor-grid">
+
+    <section class="metric-card" id="cpuCard">
+      <div class="card-top">
+        <span class="metric-icon">⌘</span>
+        <span class="card-index">01 / CPU</span>
+      </div>
+      <div class="metric-value" id="cpuValue">--%</div>
+      <div class="progress-track">
+        <div class="progress-fill" id="cpuProgress"></div>
+      </div>
+      <div class="metric-label">PROCESSING LOAD</div>
+      <div class="metric-footer">
+        <span id="cpuDescription">Aguardando dados</span>
+        <span id="cpuState">--</span>
+      </div>
+    </section>
+
+    <section class="metric-card" id="ramCard">
+      <div class="card-top">
+        <span class="metric-icon">▤</span>
+        <span class="card-index">02 / RAM</span>
+      </div>
+      <div class="metric-value" id="ramValue">--%</div>
+      <div class="progress-track">
+        <div class="progress-fill" id="ramProgress"></div>
+      </div>
+      <div class="metric-label">MEMORY UTILIZATION</div>
+      <div class="metric-footer">
+        <span id="ramDescription">Aguardando dados</span>
+        <span id="ramState">--</span>
+      </div>
+    </section>
+
+    <section class="metric-card" id="diskCard">
+      <div class="card-top">
+        <span class="metric-icon">▱</span>
+        <span class="card-index">03 / DISK</span>
+      </div>
+      <div class="metric-value" id="diskValue">--%</div>
+      <div class="progress-track">
+        <div class="progress-fill" id="diskProgress"></div>
+      </div>
+      <div class="metric-label">STORAGE UTILIZATION · sda</div>
+      <div class="metric-footer">
+        <span id="diskDescription">Aguardando dados</span>
+        <span id="diskState">--</span>
+      </div>
+    </section>
+
+    <section class="metric-card network-card" id="networkCard">
+      <div class="card-top">
+        <span class="metric-icon">♧</span>
+        <span class="card-index">04 / NETWORK</span>
+      </div>
+      <div class="network-value" id="networkValue">CHECKING</div>
+      <div class="metric-label">AGENT CONNECTIVITY</div>
+
+      <div class="network-indicator">
+        <span id="networkDot" class="status-dot"></span>
+        <span id="networkDescription">Verificando agente Zabbix</span>
+      </div>
+
+      <div class="metric-footer">
+        <span>HOST: VMware-Virtual-Platform</span>
+        <span id="networkState">--</span>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- DISPONIBILIDADE / MTTR / MTBF -->
+  <section class="reliability-grid">
+
+    <div class="reliability-card" id="availabilityCard">
+      <div class="reliability-top">
+        <span>AVAILABILITY</span>
+
+        <div class="availability-indicator">
+          <span id="availabilityDot" class="reliability-dot"></span>
+          <span id="availabilityState">VERIFICANDO</span>
+        </div>
+      </div>
+
+      <div class="reliability-value" id="availabilityValue">--%</div>
+      <div class="reliability-label">VM UPTIME</div>
+
+      <div class="reliability-footer" id="availabilityDescription">
+        Aguardando histórico ICMP
+      </div>
+    </div>
+
+    <!-- MTTR -->
+    <div class="reliability-card" id="mttrCard">
+      <div class="reliability-top">
+        <span>MTTR</span>
+
+        <div class="metric-status">
+          <span id="mttrDot" class="reliability-dot"></span>
+          <span id="mttrStatus">AGUARDANDO</span>
+        </div>
+      </div>
+
+      <div class="reliability-value" id="mttrValue">--</div>
+      <div class="reliability-label">MEAN TIME TO REPAIR</div>
+
+      <div class="reliability-footer" id="mttrDescription">
+        Aguardando eventos de recuperação
+      </div>
+    </div>
+
+    <!-- MTBF -->
+    <div class="reliability-card" id="mtbfCard">
+      <div class="reliability-top">
+        <span>MTBF</span>
+
+        <div class="metric-status">
+          <span id="mtbfDot" class="reliability-dot"></span>
+          <span id="mtbfStatus">AGUARDANDO</span>
+        </div>
+      </div>
+
+      <div class="reliability-value" id="mtbfValue">--</div>
+      <div class="reliability-label">MEAN TIME BETWEEN FAILURES</div>
+
+      <div class="reliability-footer" id="mtbfDescription">
+        Aguardando histórico de falhas
+      </div>
+    </div>
+
+  </section>
+
+  <!-- GRÁFICO HISTÓRICO -->
+  <section class="performance-card">
+    <div class="performance-header">
+      <div>
+        <h3>LIVE PERFORMANCE</h3>
+        <div class="subtitle">
+          CPU vs RAM · Histórico recebido do Zabbix
+        </div>
+      </div>
+      <span class="time-label">LAST 15 MIN</span>
+    </div>
+
+    <div class="chart-legend">
+      <span><i class="legend-dot cpu-legend"></i> CPU</span>
+      <span><i class="legend-dot ram-legend"></i> RAM</span>
+    </div>
+
+    <div class="chart-container">
+      <svg
+        id="performanceChart"
+        viewBox="0 0 900 230"
+        preserveAspectRatio="none"
+        role="img"
+        aria-label="Gráfico histórico de CPU e memória"
+      >
+        <line class="chart-grid" x1="0" y1="20" x2="900" y2="20"/>
+        <line class="chart-grid" x1="0" y1="67" x2="900" y2="67"/>
+        <line class="chart-grid" x1="0" y1="114" x2="900" y2="114"/>
+        <line class="chart-grid" x1="0" y1="161" x2="900" y2="161"/>
+        <line class="chart-grid" x1="0" y1="208" x2="900" y2="208"/>
+
+        <polyline id="cpuLine" class="chart-line cpu-line" points=""/>
+        <polyline id="ramLine" class="chart-line ram-line" points=""/>
+      </svg>
+
+      <div class="chart-empty" id="chartEmpty">
+        Coletando histórico...
+      </div>
+    </div>
+
+    <div class="chart-footer">
+      <span id="chartSamples">0 pontos recebidos</span>
+      <span>Atualização automática pelo dashboard</span>
+    </div>
+  </section>
+
+  <div class="monitor-footer">
+    <span><span class="footer-dot"></span> ZABBIX DATA SOURCE</span>
+    <span id="dataStatus">INICIALIZANDO</span>
+  </div>
+</div>

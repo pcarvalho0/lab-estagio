@@ -1,0 +1,149 @@
+
+<div class="net-analytics">
+  <header class="net-header">
+    <div>
+      <span class="net-eyebrow">MONITORAMENTO DE INFRAESTRUTURA</span>
+      <h2>Análise de Conectividade</h2>
+      <p>Disponibilidade da máquina, agente Zabbix e tráfego da interface ens33</p>
+    </div>
+    <div class="net-status" id="netOverallStatus">
+      <span class="net-status-dot"></span>
+      <span id="netOverallText">Verificando conexão</span>
+    </div>
+  </header>
+
+  <div class="net-status-grid">
+    <section class="net-panel net-status-card">
+      <div class="net-card-heading">
+        <span class="net-icon net-icon-cyan"><span>ICMP</span></span>
+        <span class="net-card-label">Conectividade da máquina</span>
+      </div>
+      <div class="net-card-value" id="netMachineStatus">--</div>
+      <div class="net-card-description">Disponibilidade via ping ICMP</div>
+      <div class="net-status-line">
+        <span id="netMachineDot"></span>
+        <span id="netMachineDetail">Aguardando dados</span>
+      </div>
+    </section>
+
+    <section class="net-panel net-status-card">
+      <div class="net-card-heading">
+        <span class="net-icon net-icon-purple"><span>ZBX</span></span>
+        <span class="net-card-label">Agente Zabbix</span>
+      </div>
+      <div class="net-card-value" id="netAgentStatus">--</div>
+      <div class="net-card-description">Conectividade do agente Zabbix</div>
+      <div class="net-status-line">
+        <span id="netAgentDot"></span>
+        <span id="netAgentDetail">Aguardando dados</span>
+      </div>
+    </section>
+
+    <section class="net-panel net-status-card">
+      <div class="net-card-heading">
+        <span class="net-icon net-icon-blue"><span>UP</span></span>
+        <span class="net-card-label">Tempo de atividade</span>
+      </div>
+      <div class="net-card-value net-uptime-value" id="netUptime">--</div>
+      <div class="net-card-description">Tempo desde a inicialização</div>
+      <div class="net-status-line">
+        <span class="net-indicator-blue"></span>
+        <span>Disponibilidade do sistema</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- ALERTA ZABBIX -->
+  <section class="net-panel net-alert-panel" id="netAgentAlertPanel">
+    <div class="net-alert-icon" id="netAgentAlertIcon">!</div>
+    <div class="net-alert-content">
+      <span class="net-alert-label">ALERTA ZABBIX · AGENTE</span>
+      <strong id="netAgentAlertTitle">Verificando alertas...</strong>
+      <p id="netAgentAlertDescription">Consultando problemas ativos do Zabbix.</p>
+    </div>
+    <span class="net-alert-badge" id="netAgentAlertBadge">AGUARDANDO</span>
+  </section>
+
+  <div class="net-section-heading">
+    <div>
+      <h3>Tráfego de rede</h3>
+      <p>Comparativo de recebimento e envio de dados</p>
+    </div>
+    <span class="net-section-tag">INTERFACE ENS33</span>
+  </div>
+
+  <section class="net-panel net-traffic-panel">
+    <div class="net-traffic-stats">
+      <div class="net-traffic-stat">
+        <span><i class="net-read-dot"></i> Recebimento</span>
+        <strong id="netReceived">--</strong>
+        <small>Bits recebidos por segundo</small>
+      </div>
+      <div class="net-traffic-stat">
+        <span><i class="net-write-dot"></i> Envio</span>
+        <strong id="netSent">--</strong>
+        <small>Bits enviados por segundo</small>
+      </div>
+    </div>
+
+    <div class="net-chart">
+      <svg viewBox="0 0 600 190" preserveAspectRatio="none">
+        <line x1="55" y1="20" x2="590" y2="20" class="net-grid"/>
+        <line x1="55" y1="65" x2="590" y2="65" class="net-grid"/>
+        <line x1="55" y1="110" x2="590" y2="110" class="net-grid"/>
+        <line x1="55" y1="155" x2="590" y2="155" class="net-grid"/>
+        <text id="netAxisTop" x="2" y="24" class="net-axis">--</text>
+        <text id="netAxisMid1" x="2" y="69" class="net-axis">--</text>
+        <text id="netAxisMid2" x="2" y="114" class="net-axis">--</text>
+        <text x="35" y="159" class="net-axis">0</text>
+        <path id="netReceiveArea" class="net-receive-area" d=""/>
+        <path id="netSendArea" class="net-send-area" d=""/>
+        <path id="netReceiveLine" class="net-receive-line" d=""/>
+        <path id="netSendLine" class="net-send-line" d=""/>
+      </svg>
+      <div id="netChartEmpty" class="net-chart-empty">
+        Aguardando histórico de tráfego...
+      </div>
+    </div>
+
+    <div class="net-chart-legend">
+      <span><i class="net-read-dot"></i> Recebido</span>
+      <span><i class="net-write-dot"></i> Enviado</span>
+    </div>
+  </section>
+
+  <div class="net-section-heading net-errors-heading">
+    <div>
+      <h3>Integridade da rede</h3>
+      <p>Erros e descartes registrados pela interface</p>
+    </div>
+  </div>
+
+  <div class="net-error-grid">
+    <section class="net-panel net-error-card">
+      <span class="net-error-label">Erros de entrada</span>
+      <strong id="netInboundErrors">--</strong>
+      <span class="net-error-caption">Pacotes recebidos com erros</span>
+      <div class="net-error-indicator" id="netInboundIndicator"></div>
+    </section>
+
+    <section class="net-panel net-error-card">
+      <span class="net-error-label">Erros de saída</span>
+      <strong id="netOutboundErrors">--</strong>
+      <span class="net-error-caption">Pacotes enviados com erros</span>
+      <div class="net-error-indicator" id="netOutboundIndicator"></div>
+    </section>
+
+    <section class="net-panel net-error-card">
+      <span class="net-error-label">Pacotes descartados</span>
+      <strong id="netOutboundDiscards">--</strong>
+      <span class="net-error-caption">Descartes na saída</span>
+      <div class="net-error-indicator" id="netDiscardIndicator"></div>
+    </section>
+  </div>
+
+  <footer class="net-footer">
+    <span><i></i> Dados recebidos do Zabbix</span>
+    <span id="netUpdated">Aguardando atualização</span>
+  </footer>
+</div>
